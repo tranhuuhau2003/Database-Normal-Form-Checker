@@ -102,7 +102,7 @@ def is2NF(R, FDS):
 
     for att in non_primes:
       if att in rhs:
-        print("\t", lhs, "->", rhs, "breaks 2NF requirements (", att, "is non-prime )")
+        print("\t", lhs, "->", rhs, "khong thoa yeu cau 2NF (", att, "khong phai la khoa )")
         return False
 
   return True
@@ -125,7 +125,7 @@ def is3NF(R, FDS):
 
     for att in non_primes:
       if att in rhs:
-        print("\t", lhs, "->", rhs, "breaks 2NF requirements (", att, "is non-prime )")
+        print("\t", lhs, "->", rhs, "khong thoa yeu cau 2NF (", att, "khong phai la khoa )")
         return False
 
   return True
@@ -142,7 +142,7 @@ def isBCNF(R, FDS):
     lhs = FD[0]
 
     if lhs not in superkeys:
-      print("\t", lhs, "->", rhs, "breaks 2NF requirements (", lhs, "is non-superkey )")
+      print("\t", lhs, "->", rhs, "khong thoa yeu cau 2NF (", lhs, "khong phai la sieu khoa )")
       return False
 
   return True
@@ -150,44 +150,47 @@ def isBCNF(R, FDS):
 
 def doChecks(name, R, FDS):
 
-  print("***********************************")
+  print("*****************")
   print("\t\t",name)
-  print("***********************************")
+  print("*****************")
 
   # Calculate candidate keys
   candidate_keys = getCandidateKeys(R, FDS)
-  print("Candidate keys:")
+  print("Khoa:")
   for key in candidate_keys:
     print("\t", key)
   print("")
 
   # Calculate prime attributes
   prime_attributes = getPrimeAttributes(R, FDS)
-  print("Prime attributes:\n\t", prime_attributes)
+  print("Thuoc tinh khoa:\n\t", prime_attributes)
   print("")
 
   non_prime_attributes = getNonPrimeAttributes(R, FDS)
-  print("Non-prime attributes:\n\t", non_prime_attributes)
+  print("Thuoc tinh khong khoa:\n\t", non_prime_attributes)
   print("")
 
+  print("Kiem tra dang chuan 1NF: ")
+  print("\tLuoc do dat dang chuan 1NF")
+  print("")
 
   # Check if the relation is normalized
-  print("2NF status:")
+  print("Kiem tra dang chuan 2NF:")
   is_2NF = is2NF(R, FDS)
   if is_2NF:
-    print("\tThe relation is in 2NF")
+    print("\tLuoc do dat dang chuan 2NF")
   print("")
 
-  print("3NF status:")
+  print("Kiem tra dang chuan 3NF:")
   is_3NF = is3NF(R, FDS)
   if is_3NF:
-    print("\tThe relation is in 3NF")
+    print("\tLuoc do dat dang chuan 3NF")
   print("") 
 
-  print("BCNF status:")
+  print("Kiem tra dang chuan BCNF:")
   is_BCNF = isBCNF(R, FDS)
   if is_BCNF:
-    print("\tThe relation is in BCNF")
+    print("\tLuoc do dat dang chuan BCNF")
   print("") 
 
 
